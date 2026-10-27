@@ -1,10 +1,22 @@
-from src.models.desconto import DescontoVIP
+from src.models.desconto import DescontoNormal, DescontoPremium, DescontoVIP
 from src.models.pedido import Pedido
+from src.services.pedido_service import PedidoService
 
 
 if __name__ == "__main__":
-    pedido = Pedido("Leonardo", DescontoVIP())
+    service = PedidoService()
 
-    valor_final = pedido.valor_final(100)
-    print(f"Cliente: {pedido.cliente}")
-    print(f"Valor final: {valor_final}")
+    pedido1 = Pedido("Leonardo", DescontoVIP())
+    pedido1.valor_original = 100
+
+    pedido2 = Pedido("Maria", DescontoNormal())
+    pedido2.valor_original = 200
+
+    pedido3 = Pedido("João", DescontoPremium())
+    pedido3.valor_original = 300
+
+    service.adicionar_pedido(pedido1)
+    service.adicionar_pedido(pedido2)
+    service.adicionar_pedido(pedido3)
+
+    service.processar_pedidos()
