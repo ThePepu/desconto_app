@@ -13,3 +13,4 @@ class PedidoController:
 
     def processar_pedidos(self):
         self.service.processar_pedidos()
+

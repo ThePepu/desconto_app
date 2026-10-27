@@ -13,3 +13,4 @@ class PedidoRepository:
 
     def listar_pedidos(self):
         return self.database.pedidos
+
